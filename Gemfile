@@ -36,9 +36,11 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails', '~> 4.0.1'
   gem 'simplecov'
+  gem 'shoulda-matchers'
 end
 
 group :development do
+  gem 'graphiql-rails'
   gem 'listen', '>= 3.0.5', '< 3.2'
 end
 
