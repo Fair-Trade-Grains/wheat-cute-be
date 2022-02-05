@@ -11,7 +11,7 @@ module Mutations
     type Types::FarmerType
 
     def resolve(name: nil, email: nil, phone: nil, address: nil, region: nil, bio: nil, photo_url: nil)
-      Farmer.create!(
+      farmer = Farmer.create!(
         name: name,
         email: email,
         phone: phone,
@@ -20,6 +20,17 @@ module Mutations
         bio: bio,
         photo_url: photo_url,
       )
+      # if farmer.save
+      #   {
+      #     farmer: farmer,
+      #     errors: []
+      #   }
+      # else
+      #   {
+      #     farmer: nil,
+      #     errors: farmer.errors.full_messages
+      #   }
+      # end
     end
   end
 end
