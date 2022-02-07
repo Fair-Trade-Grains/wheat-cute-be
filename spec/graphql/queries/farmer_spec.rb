@@ -24,6 +24,11 @@ module Types
         expect(response_hash[:allFarmers][0][:name]).to eq "Clark Kent"
         expect(response_hash[:allFarmers][0][:grains][0][:name]).to eq "Amaranth"
         expect(response_hash[:allFarmers][0][:grains].count).to eq 2
+        expect(response_hash[:allFarmers][0]).to have_key :name
+        expect(response_hash[:allFarmers][0]).to have_key :id
+        expect(response_hash[:allFarmers][0]).to have_key :region
+        expect(response_hash[:allFarmers][0]).to have_key :grains
+        expect(response_hash[:allFarmers][0]).not_to have_key :bio
       end
     end
   end
