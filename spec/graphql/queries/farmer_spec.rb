@@ -111,6 +111,34 @@ module Types
           expect(farmer).to_not have_key(:address)
         end
       end
+
+      it 'can return a single farmer by id' do
+        post '/graphql', params: {"query"=>"{
+                  farmerById(id: 34){
+                  id
+                  name
+                  bio
+                  email
+                  }
+                  }", "graphql"=>{"query"=>"{
+                  farmerById(id: 34){
+                  id
+                  name
+                  bio
+                  email
+                  }}"}}
+        response_hash = JSON.parse(response.body, symbolize_names: true)[:data]
+
+        expect(response_hash[:farmerById].count).to eq(1)
+
+        farmer = response_hash[:farmerById].first
+        expect(farmer[:id]).to eq("34")
+        expect(farmer[:name]).to eq("Owen Lars")
+        expect(farmer[:bio]).to eq("Starting a farming rebellion with my wife and nephew. Biosynthesis.")
+        expect(farmer[:email]).to eq("uncleowen@moisturefarms.com")
+        expect(farmer).to_not have_key(:phone)
+        expect(farmer).to_not have_key(:address)
+      end
     end
   end
 end

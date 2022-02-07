@@ -15,6 +15,10 @@ module Types
       argument :name, String
     end
 
+    field :farmer_by_id, [FarmerType], null: false do
+      argument :id, ID
+    end
+
     field :region_search, [FarmerType], null: false do
       argument :region, String
     end
@@ -29,6 +33,10 @@ module Types
 
     def farmer_search(name:)
       Farmer.where("name ILIKE ?", "%#{name}%")
+    end
+
+    def farmer_by_id(id:)
+      Farmer.where(id: id)
     end
 
     def region_search(region:)
