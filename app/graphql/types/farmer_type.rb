@@ -8,6 +8,7 @@ module Types
     field :region, String
     field :bio, String
     field :photo_url, String
+    field :grains, [Types::GrainType], null: true
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
   end
