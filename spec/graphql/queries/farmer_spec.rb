@@ -80,6 +80,37 @@ module Types
         expect(farmer).to_not have_key(:phone)
         expect(farmer).to_not have_key(:id)
       end
+
+      it 'can return all farmers by region' do
+        post '/graphql', params: {"query"=>"{
+          regionSearch(region: \"south\"){
+          name
+          bio
+          email
+          region
+          }
+          }", "graphql"=>{"query"=>"{
+          regionSearch(region: \"south\"){
+          name
+          bio
+          email
+          region
+          }}"}}
+        response_hash = JSON.parse(response.body, symbolize_names: true)[:data]
+
+        expect(response_hash[:regionSearch].count).to eq(2)
+
+        farmers = response_hash[:regionSearch]
+
+        farmers.each do |farmer|
+          expect(farmer).to have_key(:name)
+          expect(farmer).to have_key(:bio)
+          expect(farmer).to have_key(:email)
+          expect(farmer[:region]).to eq("South")
+          expect(farmer).to_not have_key(:phone)
+          expect(farmer).to_not have_key(:address)
+        end
+      end
     end
   end
 end
