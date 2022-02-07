@@ -6,18 +6,18 @@ module Types
         post '/graphql', params: {"query"=>"{
           allFarmers
               {name
-                    id
-                        region
-                            grains {name
-                                          id}
-                                             }}", "graphql"=>{"query"=>"{
-                                               allFarmers
-                                                   {name
-                                                         id
-                                                             region
-                                                                 grains {name
-                                                                               id}
-                                                                                  }}"}}
+                id
+                region
+                grains {name
+                id}
+                }}", "graphql"=>{"query"=>"{
+                allFarmers
+                {name
+                id
+                region
+                grains {name
+                id}
+                }}"}}
 
         response_hash = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -29,6 +29,23 @@ module Types
         expect(response_hash[:allFarmers][0]).to have_key :region
         expect(response_hash[:allFarmers][0]).to have_key :grains
         expect(response_hash[:allFarmers][0]).not_to have_key :bio
+      end
+
+      it 'can search for a farmer by name' do
+        search = 'lars'
+        post '/graphql', params: {"query"=>"{
+                  farmerSearch(name: \"Lars\"){
+                  name
+                  bio
+                  email
+                  }
+                  }", "graphql"=>{"query"=>"{
+                  farmerSearch(name: \"Lars\"){
+                  name
+                  bio
+                  email
+                  }}"}}
+        response_hash = JSON.parse(response.body, symbolize_names: true)[:data]
       end
     end
   end
