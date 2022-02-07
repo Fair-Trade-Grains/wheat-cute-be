@@ -7,8 +7,7 @@ module Types
     field :all_farmers, [FarmerType], null: false
 
     def all_farmers
-      Farmer.all      
+      Farmer.all
     end
-
   end
 end
