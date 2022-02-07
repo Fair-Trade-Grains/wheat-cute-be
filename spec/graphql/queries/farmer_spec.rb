@@ -56,7 +56,30 @@ module Types
         expect(farmer).to_not have_key(:id)
       end
 
-      
+      it 'can find a farmer by bio keywords' do
+        post '/graphql', params: {"query"=>"{
+                  bioSearch(bio: \"organic\"){
+                  name
+                  bio
+                  email
+                  }
+                  }", "graphql"=>{"query"=>"{
+                  bioSearch(name: \"organic\"){
+                  name
+                  bio
+                  email
+                  }}"}}
+        response_hash = JSON.parse(response.body, symbolize_names: true)[:data]
+
+        expect(response_hash[:bioSearch].count).to eq(1)
+
+        farmer = response_hash[:bioSearch].first
+        expect(farmer[:name]).to eq("Arthur Hoggett")
+        expect(farmer[:bio]).to eq("We don't say that'll do, we do that'll. Organic.")
+        expect(farmer[:email]).to eq("a.hoggett@babefarms.com")
+        expect(farmer).to_not have_key(:phone)
+        expect(farmer).to_not have_key(:id)
+      end
     end
   end
 end
