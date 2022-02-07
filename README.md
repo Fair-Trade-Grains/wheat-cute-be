@@ -8,17 +8,64 @@ Wheat Cute is a Rails application that aims to connect grain producers with indu
 
 This application uses a PostgresQL database to store Farm/Grain information.
 
-External data is pulled from Mapquest API. Keys to this API are referred to in this repo using environment variables and must be obtained yourself.
+All queries are made using a single GraphQL endpoint:
 
-This application supports the following API calls:
+> post to '/graphql'
 
-** WORDS GO HERE **
+All queries must be in GraphQL format in the body of the request. Note the camelCase.
 
-Method: GET
-Path: api/v1/ **WORDSWORDSWORDS **
-Params: some_key
+This application supports the following Graphql queries:
 
-Ex:
+**All farmers/all child grains/all attributes (pair down as needed):**
+
+{
+    allFarmers
+        {
+        name
+        id
+        email
+        phone
+        address
+        region
+        bio
+        photoUrl
+        grains
+            {
+            name
+            id
+            moisture
+            fallingNumber
+            protein
+            testWeight
+            farmersNotes
+            farmerId
+            }
+        }
+}
+
+**All grains/all attributes (pair down as needed):**
+
+{
+    allGrains{
+            name
+            id
+            moisture
+            fallingNumber
+            protein
+            testWeight
+            farmersNotes
+            farmerId
+            }
+        }
+
+Grain Search: (returns farmers who have a grain that matches the search parameter)
+
+{
+    grainSearch(name: "Wheat")
+        {
+        farmer
+            {name}}
+}
 
 http://localhost:3000/api/v1/backgrounds?location=Denver,CO'
 
