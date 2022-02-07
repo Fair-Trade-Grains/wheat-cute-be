@@ -32,7 +32,6 @@ module Types
       end
 
       it 'can search for a farmer by name' do
-        search = 'lars'
         post '/graphql', params: {"query"=>"{
                   farmerSearch(name: \"Lars\"){
                   name
@@ -46,7 +45,18 @@ module Types
                   email
                   }}"}}
         response_hash = JSON.parse(response.body, symbolize_names: true)[:data]
+
+        expect(response_hash[:farmerSearch].count).to eq(1)
+
+        farmer = response_hash[:farmerSearch].first
+        expect(farmer[:name]).to eq("Owen Lars")
+        expect(farmer[:bio]).to eq("Starting a farming rebellion with my wife and nephew. Biosynthesis.")
+        expect(farmer[:email]).to eq("uncleowen@moisturefarms.com")
+        expect(farmer).to_not have_key(:phone)
+        expect(farmer).to_not have_key(:id)
       end
+
+      
     end
   end
 end
