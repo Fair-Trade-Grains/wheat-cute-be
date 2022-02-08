@@ -12,7 +12,6 @@ module Mutations
 
         deleted = DeleteFarmer.new(field: nil, object: nil, context: {})
         deleted.resolve(id: farmer1.id)
-        # deleted_farmer = Farmer.find(farmer1.id)
         lonely_farmer = Farmer.find(farmer2.id)
 
         expect(Farmer.count).to eq(6)

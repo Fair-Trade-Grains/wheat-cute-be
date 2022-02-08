@@ -113,15 +113,19 @@ module Types
       end
 
       it 'can return a single farmer by id' do
+        # farmermutation = CreateFarmer.new(field: nil, object: nil, context: {})
+        #
+        # farmer2 = farmermutation.resolve(name: 'Cool Name', email: 'email@email.com', phone: '444-444-4444', address: '5678 Dusty Rd, Tatooine, OK', region: 'East', bio: 'Cool bio.', photo_url: 'picture_link_here.jpeg')
+        #
         post '/graphql', params: {"query"=>"{
-                  farmerById(id: 34){
+                  farmerById(id: 2){
                   id
                   name
                   bio
                   email
                   }
                   }", "graphql"=>{"query"=>"{
-                  farmerById(id: 34){
+                  farmerById(id: 2){
                   id
                   name
                   bio
@@ -132,7 +136,7 @@ module Types
         expect(response_hash[:farmerById].count).to eq(1)
 
         farmer = response_hash[:farmerById].first
-        expect(farmer[:id]).to eq("34")
+        expect(farmer[:id]).to eq("2")
         expect(farmer[:name]).to eq("Owen Lars")
         expect(farmer[:bio]).to eq("Starting a farming rebellion with my wife and nephew. Biosynthesis.")
         expect(farmer[:email]).to eq("uncleowen@moisturefarms.com")
