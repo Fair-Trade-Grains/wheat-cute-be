@@ -11,7 +11,7 @@ module Mutations
 
         updated.resolve(id: farmer.id, attributes: {email: 'test_1@email.com'})
 
-        new_info = Farmer.first
+        new_info = Farmer.last
 
         expect(new_info[:email]).to eq('test_1@email.com')
       end
