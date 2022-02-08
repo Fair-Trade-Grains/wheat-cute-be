@@ -144,6 +144,8 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.3)
+    rspec_junit_formatter (0.5.1)
+      rspec-core (>= 2, < 4, != 2.12.0)
     ruby_dep (1.5.0)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
@@ -185,6 +187,7 @@ DEPENDENCIES
   rails (~> 5.2.6)
   rspec-graphql_response
   rspec-rails (~> 4.0.1)
+  rspec_junit_formatter
   shoulda-matchers
   simplecov
   tzinfo-data
