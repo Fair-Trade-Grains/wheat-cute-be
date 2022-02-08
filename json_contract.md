@@ -439,11 +439,12 @@ Response:
     }
 }
 ```
+** CRUD Functions **
+
 **Create a Farmer**
+Query:
 ```
-mutation createFarmer {
-    createFarmer(input:
-            "CreateFarmerInput!"
+mutation { createFarmer (input: {
             name: "Marco",
             email: "marco@gmail.com",
             phone: "303-555-1750",
@@ -451,12 +452,23 @@ mutation createFarmer {
             region: "West",
             bio: "I was born in Venice",
             photoUrl: "photo_path.jpg"  
-          ) {
+          }) {
 
             name
             bio
             }
         }
+```
+Response:
+```
+{
+    "data": {
+        "createFarmer": {
+            "name": "Marco",
+            "bio": "I was born in Venice"
+        }
+    }
+}
 ```
 **Edit a Farmer**
 ```
@@ -466,6 +478,7 @@ mutation createFarmer {
 }
 ```
 **Create a Grain**
+Query:
 ```
 mutation {
     createGrain( input:{
@@ -482,6 +495,17 @@ mutation {
             }
         }
 ```
+Response:
+```
+{
+    "data": {
+        "createGrain": {
+            "name": "Super Wheat",
+            "farmersNotes": "Super crop of great wheat"
+        }
+    }
+}
+```
 **Edit a Grain**
 ```
 {
@@ -492,7 +516,7 @@ mutation {
 **Delete a Grain**
 ```
 {
-    grainEdit
+    grainDelete
 
 }
 ```
