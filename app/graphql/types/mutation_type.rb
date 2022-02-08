@@ -7,5 +7,7 @@ module Types
     field :delete_farmer, mutation: Mutations::DeleteFarmer
 
     field :create_grain, mutation: Mutations::CreateGrain
+
+    field :update_grain, mutation: Mutations::UpdateGrain
   end
 end
