@@ -7,7 +7,7 @@ module Mutations
 
         mutation.resolve(name: 'Beru Lars', email: 'auntberu@moisturefarms.com', phone: '555-555-5555', address: '5678 Dusty Rd, Tatooine, OK', region: 'South', bio: 'Starting a farming rebellion with my husband and nephew. Biosynthesis.', photo_url: 'picture_link_here.jpeg')
 
-        expect(Farmer.count).to eq(1)
+        expect(Farmer.count).to eq(6)
       end
     end
   end

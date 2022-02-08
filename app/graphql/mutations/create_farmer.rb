@@ -1,6 +1,12 @@
 module Mutations
   class CreateFarmer < BaseMutation
-    argument :attributes, Types::FarmerAttributes, required: true
+    argument :name, String, required: true
+    argument :email, String, required: true
+    argument :phone, String, required: false
+    argument :address, String, required: false
+    argument :region, String, required: false
+    argument :bio, String, required: false
+    argument :photo_url, String, required: false
 
     type Types::FarmerType
 

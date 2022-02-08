@@ -2,7 +2,7 @@ require 'rails_helper'
 module Types
   RSpec.describe QueryType, type: :request do
     describe 'query' do
-      it 'returns a farmers grains' do
+      it 'returns all farmers and their grains' do
         post '/graphql', params: {"query"=>"{
           allFarmers
               {name
