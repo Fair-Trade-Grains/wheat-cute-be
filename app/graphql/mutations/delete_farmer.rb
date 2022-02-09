@@ -4,9 +4,13 @@ module Mutations
     argument :id, ID, required: false
 
     def resolve(id:)
-      farmer = Farmer.find(id)
-      farmer.destroy
-      { response: "You've successfully destroyed this farmer and their grains." }
-     end
+      if Farmer.exists?(id)
+        farmer = Farmer.find(id)
+        farmer.destroy
+        { response: "You've successfully destroyed this farmer and their grains." }
+      else
+        { response: "Farmer not found" }
+      end
+    end
   end
 end
