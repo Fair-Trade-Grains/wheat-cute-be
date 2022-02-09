@@ -1,7 +1,6 @@
 module Mutations
   class DeleteFarmer < BaseMutation
     field :id, ID, null: true
-
     argument :id, ID, required: false
 
     def resolve(id:)
