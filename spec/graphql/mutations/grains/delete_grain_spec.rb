@@ -26,6 +26,13 @@ module Mutations
         expect(Grain.count).to eq(8)
         expect(Grain.last.name).to_not eq("Red Turkey Wheat")
       end
+
+      it 'returns an error if no grain is found' do
+        deleted = DeleteGrain.new(field: nil, object: nil, context: {})
+        error = deleted.resolve(id: "100")
+        
+        expect(error[:response]).to eq("Grain not found")
+      end
     end
   end
 end
