@@ -207,28 +207,6 @@ Response:
                         "farmerId": 4
                     }
                 ]
-            },
-            {
-                "name": "Arthur Hoggett",
-                "id": "5",
-                "email": "a.hoggett@babefarms.com",
-                "phone": "555-555-5555",
-                "address": "84625 Main St, Spokane, WA",
-                "region": "West",
-                "bio": "We don't say that'll do, we do that'll. Organic.",
-                "photoUrl": "picture_link_here.jpeg",
-                "grains": [
-                    {
-                        "name": "Millet",
-                        "id": "8",
-                        "moisture": 13.0,
-                        "fallingNumber": 400.0,
-                        "protein": 5.0,
-                        "testWeight": 45.0,
-                        "farmersNotes": "N/A",
-                        "farmerId": 5
-                    }
-                ]
             }
         ]
     }
@@ -286,56 +264,6 @@ Response:
                 "testWeight": 54.0,
                 "farmersNotes": "N/A",
                 "farmerId": 2
-            },
-            {
-                "name": "Rye",
-                "id": "4",
-                "moisture": 10.0,
-                "fallingNumber": 250.0,
-                "protein": 16.0,
-                "testWeight": 51.0,
-                "farmersNotes": "N/A",
-                "farmerId": 3
-            },
-            {
-                "name": "Barley",
-                "id": "5",
-                "moisture": 9.0,
-                "fallingNumber": 275.0,
-                "protein": 9.0,
-                "testWeight": 53.0,
-                "farmersNotes": "N/A",
-                "farmerId": 3
-            },
-            {
-                "name": "Buckwheat",
-                "id": "6",
-                "moisture": 11.0,
-                "fallingNumber": 283.0,
-                "protein": 12.0,
-                "testWeight": 59.0,
-                "farmersNotes": "N/A",
-                "farmerId": 4
-            },
-            {
-                "name": "Wheat-Emmer",
-                "id": "7",
-                "moisture": 7.0,
-                "fallingNumber": 315.0,
-                "protein": 6.0,
-                "testWeight": 57.0,
-                "farmersNotes": "N/A",
-                "farmerId": 4
-            },
-            {
-                "name": "Millet",
-                "id": "8",
-                "moisture": 13.0,
-                "fallingNumber": 400.0,
-                "protein": 5.0,
-                "testWeight": 45.0,
-                "farmersNotes": "N/A",
-                "farmerId": 5
             }
         ]
     }
@@ -344,6 +272,7 @@ Response:
 
 **Grain Search: (returns farmers who have a grain that matches the search parameter)**
 
+Query:
 ```
 {
     grainSearch(name: "Wheat")
@@ -378,6 +307,7 @@ Response:
 ```
 **Farmer Search (name): (returns farmers who have a name that matches the search parameter)**
 
+Query:
 ```
 {
     farmerSearch(name: "Hogget")
@@ -397,6 +327,7 @@ Response:
 }
 ```
 **Farmer Search (bio): (returns farmers who have a bio entry that partially matches the search parameter)**
+
 Query:
 ```
 {
@@ -417,6 +348,7 @@ Response:
 }
 ```
 **Farmer Search (region): (returns farmers who have a region that partially matches the search parameter)**
+
 Query:
 ```
 {
@@ -439,9 +371,10 @@ Response:
     }
 }
 ```
-** CRUD Functions **
+**CRUD Functions**
 
 **Create a Farmer**
+
 Query:
 ```
 mutation {
@@ -471,13 +404,54 @@ Response:
 }
 ```
 **Edit a Farmer**
+
+Query:
+```
+mutation {
+   updateFarmer( input:{ id: "1", attributes:{
+           name: "Superman",
+           email: "not_superman@dailyplanet.com"
+           }}){farmer{
+               email
+           }
+       }
+}
+```
+Response:
 ```
 {
-    farmerUpdate
+    "data": {
+        "updateFarmer": {
+            "farmer": {
+                "email": "not_superman@dailyplanet.com"
+            }
+        }
+    }
+}
+```
+**Delete a Farmer (and all child grains)**
 
+Query:
+```
+mutation {
+    deleteFarmer( input:{ id: "16" })
+    {
+        response   
+            }
+        }
+```
+Response:
+```
+{
+    "data": {
+        "deleteFarmer": {
+            "response": "You've successfully destroyed this farmer and their grains."
+        }
+    }
 }
 ```
 **Create a Grain**
+
 Query:
 ```
 mutation {
@@ -506,14 +480,10 @@ Response:
     }
 }
 ```
-**Edit a Grain**
-```
-{
-    grainUpdate
 
-}
-```
 **Delete a Grain**
+
+Query:
 ```
 mutation {
    deleteGrain( input:{ id: "16" })
@@ -521,4 +491,14 @@ mutation {
        response   
            }
        }
+```
+Response:
+```
+{
+    "data": {
+        "deleteGrain": {
+            "response": "You've successfully destroyed this grain."
+        }
+    }
+}
 ```
