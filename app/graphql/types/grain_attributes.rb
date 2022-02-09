@@ -8,7 +8,6 @@ module Types
     argument :test_weight, Float
     argument :farmers_notes, String
     argument :farmer_id, Integer
-    # argument :farmer, [Types::FarmerType], required: false
     argument :created_at, GraphQL::Types::ISO8601DateTime, required: false
     argument :updated_at, GraphQL::Types::ISO8601DateTime, required: false
   end

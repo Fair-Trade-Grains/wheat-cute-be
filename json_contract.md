@@ -441,9 +441,8 @@ Response:
 ```
 **Create a Farmer**
 ```
-mutation createFarmer {
-    createFarmer(input:
-            "CreateFarmerInput!"
+mutation {
+    createFarmer (input: {
             name: "Marco",
             email: "marco@gmail.com",
             phone: "303-555-1750",
@@ -451,8 +450,7 @@ mutation createFarmer {
             region: "West",
             bio: "I was born in Venice",
             photoUrl: "photo_path.jpg"  
-          ) {
-
+          }) {
             name
             bio
             }
@@ -491,8 +489,10 @@ mutation {
 ```
 **Delete a Grain**
 ```
-{
-    grainEdit
-
-}
+mutation {
+   deleteGrain( input:{ id: "16" })
+   {
+       response   
+           }
+       }
 ```
