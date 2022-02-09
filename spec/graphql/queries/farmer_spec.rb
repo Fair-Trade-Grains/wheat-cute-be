@@ -3,20 +3,27 @@ module Types
   RSpec.describe QueryType, type: :request do
     describe 'query' do
       it 'returns all farmers and their grains' do
-        post '/graphql', params: {"query"=>"{
-          allFarmers
-              {name
-                id
-                region
-                grains {name
-                id}
-                }}", "graphql"=>{"query"=>"{
-                allFarmers
-                {name
-                id
-                region
-                grains {name
-                id}
+        post '/graphql', params: {
+          "query"=>"{
+          allFarmers {
+            name
+            id
+            region
+            grains {
+              name
+              id
+              }
+            }
+                }",
+                "graphql"=>{"query"=>"{
+                allFarmers {
+                  name
+                  id
+                  region
+                grains {
+                  name
+                  id
+                }
                 }}"}}
 
         response_hash = JSON.parse(response.body, symbolize_names: true)[:data]
@@ -96,6 +103,7 @@ module Types
           email
           region
           }}"}}
+
         response_hash = JSON.parse(response.body, symbolize_names: true)[:data]
 
         expect(response_hash[:regionSearch].count).to eq(2)
@@ -113,19 +121,17 @@ module Types
       end
 
       it 'can return a single farmer by id' do
-        # farmermutation = CreateFarmer.new(field: nil, object: nil, context: {})
-        #
-        # farmer2 = farmermutation.resolve(name: 'Cool Name', email: 'email@email.com', phone: '444-444-4444', address: '5678 Dusty Rd, Tatooine, OK', region: 'East', bio: 'Cool bio.', photo_url: 'picture_link_here.jpeg')
-        #
+        farmer_id = Farmer.first.id
+        # farmer = Farmer.first
         post '/graphql', params: {"query"=>"{
-                  farmerById(id: 2){
+                  farmerById(id: \"#{farmer_id}\"){
                   id
                   name
                   bio
                   email
                   }
                   }", "graphql"=>{"query"=>"{
-                  farmerById(id: 2){
+                  farmerById(id: \"#{farmer_id}\"){
                   id
                   name
                   bio
@@ -133,13 +139,15 @@ module Types
                   }}"}}
         response_hash = JSON.parse(response.body, symbolize_names: true)[:data]
 
-        expect(response_hash[:farmerById].count).to eq(1)
+        expect(response_hash[:farmerById]).to be_a Hash
 
-        farmer = response_hash[:farmerById].first
-        expect(farmer[:id]).to eq("2")
-        expect(farmer[:name]).to eq("Owen Lars")
-        expect(farmer[:bio]).to eq("Starting a farming rebellion with my wife and nephew. Biosynthesis.")
-        expect(farmer[:email]).to eq("uncleowen@moisturefarms.com")
+        farmer = response_hash[:farmerById]
+
+        expect(farmer[:id]).to eq("#{farmer_id}")
+        expect(farmer).to have_key(:name)
+        expect(farmer).to have_key(:bio)
+        expect(farmer).to have_key(:email)
+
         expect(farmer).to_not have_key(:phone)
         expect(farmer).to_not have_key(:address)
       end

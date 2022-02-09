@@ -15,7 +15,7 @@ module Types
       argument :name, String
     end
 
-    field :farmer_by_id, [FarmerType], null: false do
+    field :farmer_by_id, FarmerType, null: false do
       argument :id, ID
     end
 
@@ -36,7 +36,8 @@ module Types
     end
 
     def farmer_by_id(id:)
-      Farmer.where(id: id)
+      # Farmer.where(id: id)
+      Farmer.find(id)
     end
 
     def region_search(region:)
