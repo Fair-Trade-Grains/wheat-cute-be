@@ -305,6 +305,33 @@ Response:
     }
 }
 ```
+**Farmer Search (ID)(Exact match only)**
+
+Query:
+```
+{
+  farmerById(id: "2")
+    {
+      id
+      name
+      bio
+      email
+    }
+  }
+```
+Response:
+```
+{
+    "data": {
+        "farmerById": {
+            "id": "2",
+            "name": "Owen Lars",
+            "bio": "Starting a farming rebellion with my wife and nephew. Biosynthesis.",
+            "email": "uncleowen@moisturefarms.com"
+        }
+    }
+}
+```
 **Farmer Search (name): (returns farmers who have a name that matches the search parameter)**
 
 Query:
