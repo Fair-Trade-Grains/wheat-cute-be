@@ -6,11 +6,12 @@ module Mutations
     argument :attributes, Types::GrainAttributes, required: true
 
     def resolve(id: nil, attributes: nil)
-      grain = Grain.find(id)
-      if grain.update(attributes.to_h)
+      if Grain.exists?(id)
+        grain = Grain.find(id)
+        grain.update(attributes.to_h)
         grain
       else
-        raise GraphQL::ExecutionError, post.errors.full_messages.join(", ")
+        "Grain could not be updated."
       end
     end
   end
