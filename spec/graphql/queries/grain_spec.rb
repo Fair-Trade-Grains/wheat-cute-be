@@ -36,6 +36,31 @@ module Types
         expect(response_hash[:allGrains][0]).to have_key :moisture
         expect(response_hash[:allGrains][0]).not_to have_key :bio
       end
+
+      it 'searches for a grain' do
+        post '/graphql', params: {
+          "query"=>"{
+              grainSearch(name: \"Wheat\")
+                  {
+                  farmer
+                      {name}}
+          }",
+          "graphql"=>{"query"=>"{
+              grainSearch(name: \"Wheat\")
+                  {
+                  farmer
+                      {name}}
+          }"}}
+
+        response_hash = JSON.parse(response.body, symbolize_names: true)[:data]
+
+        expect(response_hash[:grainSearch].count).to eq(3)
+
+        farmers = response_hash[:grainSearch]
+
+        expect(farmers[0][:farmer][:name]).to eq("Owen Lars")
+        
+      end
     end
   end
 end
