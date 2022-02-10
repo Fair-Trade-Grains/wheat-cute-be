@@ -16,7 +16,7 @@ post to '/graphql'
 
 All queries must be in GraphQL format in the body of the request. Note the camelCase.
 
-This application supports the following Graphql queries:
+This application supports the following  basic Graphql queries:
 **All farmers/all child grains/all attributes (pair down as needed):**
 ```
 {
@@ -45,100 +45,7 @@ This application supports the following Graphql queries:
 }
 ```
 
-**All grains/all attributes (pair down as needed):**
-
-```
-{
-    allGrains{
-            name
-            id
-            moisture
-            fallingNumber
-            protein
-            testWeight
-            farmersNotes
-            farmerId
-            }
-        }
-```
-
-**Grain Search: (returns farmers who have a grain that matches the search parameter)**
-
-```
-{
-    grainSearch(name: "Wheat")
-        {
-        farmer
-            {name}}
-}
-```
-**Farmer Search (name): (returns farmers who have a name that matches the search parameter)**
-
-```
-{
-    farmerSearch(name: "Hoggtet")
-        {
-        farmer
-            {name}}
-}
-```
-**Farmer Search (bio): (returns farmers who have a bio entry that partially matches the search parameter)**
-
-```
-{
-    farmerSearch(bio: "wife")
-        {
-        farmer
-            {name}}
-}
-```
-**Farmer Search (region): (returns farmers who have a region that partially matches the search parameter)**
-
-```
-{
-    farmerSearch(bio: "South")
-        {
-        farmer
-            {name}}
-}
-```
-**Create a Farmer**
-```
-{
-    farmerCreate
-
-}
-```
-**Edit a Farmer**
-```
-{
-    farmerEdit
-
-}
-```
-**Create a Grain**
-```
-{
-    grainCreate
-
-}
-```
-**Edit a Grain**
-```
-{
-    grainEdit
-
-}
-```
-**Delete a Grain**
-```
-{
-    grainEdit
-
-}
-```
-
-
+For a comprehensive list of all GraphQL queries, see the json_contract.md file.
 
 **Setup**
 
