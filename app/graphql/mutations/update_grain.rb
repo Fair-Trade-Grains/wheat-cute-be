@@ -8,7 +8,7 @@ module Mutations
     def resolve(id: nil, attributes: nil)
       grain = Grain.find(id)
       if grain.update(attributes.to_h)
-        {grain: grain}
+        grain
       else
         raise GraphQL::ExecutionError, post.errors.full_messages.join(", ")
       end

@@ -6,11 +6,12 @@ module Mutations
     argument :attributes, Types::FarmerAttributes, required: true
 
     def resolve(id: nil, attributes: nil)
-      farmer = Farmer.find(id)
-      if farmer.update(attributes.to_h)
-        {farmer: farmer}
+      if Farmer.exists?(id)
+        farmer = Farmer.find(id)
+        farmer.update(attributes.to_h)
+        farmer
       else
-        raise GraphQL::ExecutionError, post.errors.full_messages.join(", ")
+        "Farmer could not be updated."
       end
     end
   end
