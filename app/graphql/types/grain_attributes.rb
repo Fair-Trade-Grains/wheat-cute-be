@@ -7,7 +7,7 @@ module Types
     argument :protein, Float, required: false
     argument :test_weight, Float, required: false
     argument :farmers_notes, String, required: false
-    argument :farmer_id, Integer, required: false
+    argument :farmer_id, Integer, required: true
     argument :created_at, GraphQL::Types::ISO8601DateTime, required: false
     argument :updated_at, GraphQL::Types::ISO8601DateTime, required: false
   end

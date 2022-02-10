@@ -4,23 +4,23 @@ module Mutations
     describe 'resolver' do
       it 'deletes a grain' do
         farmermutation = CreateFarmer.new(field: nil, object: nil, context: {})
-        farmer2 = farmermutation.resolve(name: 'Cool Name', email: 'email@email.com', phone: '444-444-4444', address: '5678 Dusty Rd, Tatooine, OK', region: 'East', bio: 'Cool bio.', photo_url: 'picture_link_here.jpeg')
+        farmer2 = farmermutation.resolve(attributes: {name: 'Cool Name', email: 'email@email.com', phone: '444-444-4444', address: '5678 Dusty Rd, Tatooine, OK', region: 'East', bio: 'Cool bio.', photo_url: 'picture_link_here.jpeg'})
         mutation = CreateGrain.new(field: nil, object: nil, context: {})
 
-        grain = mutation.resolve(name: "Red Turkey Wheat",
+        grain = mutation.resolve(attributes: {name: "Red Turkey Wheat",
             moisture: 12.5,
             test_weight: 42.0,
             falling_number: 175.3,
             protein: 8.3,
             farmers_notes: "Gobble Gobble!",
-            farmer_id: farmer2.id)
+            farmer_id: farmer2[:farmer].id})
 
         expect(Grain.last.name).to eq("Red Turkey Wheat")
         expect(Grain.count).to eq(9)
 
         deleted = DeleteGrain.new(field: nil, object: nil, context: {})
 
-        deleted.resolve(id: grain.id)
+        deleted.resolve(id: grain[:grain].id)
 
         expect(Grain.count).to eq(8)
         expect(Grain.last.name).to_not eq("Red Turkey Wheat")
