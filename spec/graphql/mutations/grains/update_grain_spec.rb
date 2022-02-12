@@ -16,7 +16,7 @@ module Mutations
             farmer_id: farmer[:farmer].id})
 
         updated = UpdateGrain.new(field: nil, object: nil, context: {})
-        # require "pry"; binding.pry
+
         update_name = updated.resolve(id: create_grain[:grain].id, attributes: { name: 'Catchers Rye'})
 
         expect(update_name[:grain].name).to eq("Catchers Rye")
