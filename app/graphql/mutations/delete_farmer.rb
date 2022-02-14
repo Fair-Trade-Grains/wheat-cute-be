@@ -1,12 +1,17 @@
 module Mutations
   class DeleteFarmer < BaseMutation
-    field :response, ID, null: true
+    field :response, String
+    field :errors, String
+
     argument :id, ID, required: false
 
     def resolve(id:)
-      farmer = Farmer.find(id)
-      farmer.destroy
-      { response: "You've successfully destroyed this farmer and their grains." }
-     end
+      if Farmer.exists?(id)
+        Farmer.destroy(id)
+        { response: "You've successfully destroyed this farmer and their grains.", errors: nil}
+      else
+        { response: nil, errors: "Farmer not found." }
+      end
+    end
   end
 end

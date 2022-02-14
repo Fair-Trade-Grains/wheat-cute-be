@@ -4,9 +4,12 @@ module Mutations
     argument :id, ID, required: false
 
     def resolve(id:)
-      grain = Grain.find(id)
-      grain.destroy
-      { response: "You've successfully destroyed this grain." }
+      if Grain.exists?(id)
+        Grain.destroy(id)
+        { response: "You've successfully destroyed this grain." }
+      else
+        { response: "Grain not found" }
+      end
     end
   end
 end
