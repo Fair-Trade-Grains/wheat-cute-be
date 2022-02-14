@@ -1,16 +1,18 @@
 module Mutations
   class UpdateGrain < BaseMutation
     field :grain, Types::GrainType, null: false
+    field :errors, String
 
     argument :id, ID, required: true
     argument :attributes, Types::GrainAttributes, required: true
 
     def resolve(id: nil, attributes: nil)
-      grain = Grain.find(id)
-      if grain.update(attributes.to_h)
-        {grain: grain}
+      if Grain.exists?(id)
+        grain = Grain.find(id)
+        grain.update(attributes.to_h)
+        { grain: grain, errors: nil }
       else
-        raise GraphQL::ExecutionError, post.errors.full_messages.join(", ")
+        { grain: nil, errors: "Grain could not be updated." }
       end
     end
   end
