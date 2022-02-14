@@ -480,6 +480,34 @@ mutation {
             }
         }
 ```
+{"query"=>"mutation {
+  createGrain( input:{
+    name: \"Super Wheat\",
+    moisture: 12.5,
+    testWeight: 42.0,
+    fallingNumber: 175.3,
+    protein: 8.3,
+    farmersNotes: \"Super crop of great wheat\",
+    farmerId: 1})
+    {
+      name
+      farmersNotes
+    }}",
+"graphql"=>{"query"=>"mutation {
+  createGrain( input:{
+    name: \"Super Wheat\",
+    moisture: 12.5,
+    testWeight: 42.0,
+    fallingNumber: 175.3,
+    protein: 8.3,
+    farmersNotes: \"Super crop of great wheat\",
+    farmerId: 1})
+    {
+    name
+    farmersNotes
+    }
+    }"}}
+    
 **Edit a Grain**
 ```
 {
