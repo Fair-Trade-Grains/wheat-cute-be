@@ -507,7 +507,7 @@ mutation {
     farmersNotes
     }
     }"}}
-    
+
 **Edit a Grain**
 ```
 {
@@ -523,4 +523,25 @@ mutation {
        response   
            }
        }
+```
+**Send an interest email to a farmer** (Note: "sender" is the interested parties email. The actual email message will come from "wheatcute.backend@gmail.com")
+
+Query:
+```
+mutation {
+ contactFarmer(input: {farmer: "example@test.com",
+                 sender: "example@test.com",
+                 message: "Do you have any barley right now?"})
+                 {response}
+}
+```
+Response:
+```
+{
+    "data": {
+        "contactFarmer": {
+            "response": "Message sent"
+        }
+    }
+}
 ```
