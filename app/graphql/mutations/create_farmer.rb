@@ -9,11 +9,11 @@ module Mutations
     def resolve(attributes: nil)
       if attributes.to_h[:photo_url] == ""
         attributes = { :name =>attributes.to_h[:name],
-                       :email =>attributes.to_h[:name],
-                       :phone =>attributes.to_h[:name],
-                       :address =>attributes.to_h[:name],
-                       :region =>attributes.to_h[:name],
-                       :bio =>attributes.to_h[:name],
+                       :email =>attributes.to_h[:email],
+                       :phone =>attributes.to_h[:phone],
+                       :address =>attributes.to_h[:address],
+                       :region =>attributes.to_h[:region],
+                       :bio =>attributes.to_h[:bio],
                        :photo_url =>"#{random_farm_image}"
                      }
         farmer = Farmer.new(attributes: attributes.to_h)
