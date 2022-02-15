@@ -5,8 +5,7 @@ module Mutations
 
     def resolve(id:)
       if Grain.exists?(id)
-        grain = Grain.find(id)
-        grain.destroy
+        Grain.destroy(id)
         { response: "You've successfully destroyed this grain." }
       else
         { response: "Grain not found" }

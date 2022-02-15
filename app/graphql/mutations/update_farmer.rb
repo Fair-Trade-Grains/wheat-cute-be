@@ -1,16 +1,18 @@
 module Mutations
   class UpdateFarmer < BaseMutation
     field :farmer, Types::FarmerType, null: false
+    field :errors, String
 
     argument :id, ID, required: true
     argument :attributes, Types::FarmerAttributes, required: true
 
     def resolve(id: nil, attributes: nil)
-      farmer = Farmer.find(id)
-      if farmer.update(attributes.to_h)
-        {farmer: farmer}
+      if Farmer.exists?(id)
+        farmer = Farmer.find(id)
+        farmer.update(attributes.to_h)
+        { farmer: farmer, errors: nil }
       else
-        raise GraphQL::ExecutionError, post.errors.full_messages.join(", ")
+        { farmer: nil, errors: "Farmer could not be updated."}
       end
     end
   end
