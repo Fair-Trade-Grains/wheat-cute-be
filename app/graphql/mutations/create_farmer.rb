@@ -7,7 +7,7 @@ module Mutations
     type Types::FarmerType
 
     def resolve(attributes: nil)
-      if attributes.to_h[:photo_url].nil?
+      if attributes.to_h[:photo_url] == ""
         attributes = { :name =>attributes.to_h[:name],
                        :email =>attributes.to_h[:name],
                        :phone =>attributes.to_h[:name],
