@@ -28,14 +28,7 @@ module Mutations
     end
 
     def random_farm_image
-      array = ["https://imgur.com/0thgtTJ",
-              "https://imgur.com/ettFY8W",
-              "https://imgur.com/r2d8r4n",
-              "https://imgur.com/pGEOMvT",
-              "https://imgur.com/8TbD8YX",
-              "https://imgur.com/DR0gmaA",
-              "https://imgur.com/RJqNDM8",
-              "https://imgur.com/eJvXanO"]
+      array = ["https://res.cloudinary.com/drsgz7uiy/image/upload/v1644945446/wheatcute/gwnpiytpyzr71uxwv4wp.jpg"]
 
       array.shuffle.pop(1).first
     end
