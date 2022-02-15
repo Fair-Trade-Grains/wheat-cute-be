@@ -40,4 +40,4 @@ module Mutations
       array.shuffle.pop(1).first
     end
   end
-endgit
+end
