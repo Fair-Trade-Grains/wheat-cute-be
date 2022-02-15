@@ -11,5 +11,7 @@ module Types
     field :update_grain,  mutation: Mutations::UpdateGrain
 
     field :delete_grain,  mutation: Mutations::DeleteGrain
+
+    field :contact_farmer,  mutation: Mutations::ContactFarmer
   end
 end
