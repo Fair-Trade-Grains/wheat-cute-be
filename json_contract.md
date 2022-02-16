@@ -442,7 +442,7 @@ Response:
 **Create a Farmer**
 ```
 mutation {
-    createFarmer (input: {
+    createFarmer (input: { attributes: {
             name: "Marco",
             email: "marco@gmail.com",
             phone: "303-555-1750",
@@ -450,7 +450,7 @@ mutation {
             region: "West",
             bio: "I was born in Venice",
             photoUrl: "photo_path.jpg"  
-          }) {
+          }}) {
             name
             bio
             }
@@ -466,14 +466,14 @@ mutation {
 **Create a Grain**
 ```
 mutation {
-    createGrain( input:{
+    createGrain( input:{ attributes: {
             name: "Super Wheat",
             moisture: 12.5,
             testWeight: 42.0,
             fallingNumber: 175.3,
             protein: 8.3,
             farmersNotes: "Super crop of great wheat",
-            farmerId: 1}
+            farmerId: 1}}
         ){
             name
             farmersNotes
@@ -513,6 +513,32 @@ mutation {
 {
     grainUpdate
 
+}
+```
+
+**Update a Grain**
+```
+mutation {
+    updateGrain( input: {id: "1", attributes:{
+            name: "Super Wheat",
+            farmerId: 1
+            }}
+        ){
+            grain{
+            name
+        }
+    }  
+```
+Response:
+```
+{
+    "data": {
+        "updateGrain": {
+            "grain": {
+                "name": "Super Wheat"
+            }
+        }
+    }
 }
 ```
 **Delete a Grain**
