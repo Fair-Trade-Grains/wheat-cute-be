@@ -35,7 +35,9 @@ module Mutations
                 "https://res.cloudinary.com/drsgz7uiy/image/upload/v1644969678/wheatcute/ebmp1asm70j7jmwlp5so.jpg",
                 "https://res.cloudinary.com/drsgz7uiy/image/upload/v1644969786/wheatcute/u4jlw3hndjprnd4yu1rk.jpg",
                 "https://res.cloudinary.com/drsgz7uiy/image/upload/v1644972475/wheatcute/xbihl2g2ycl0y9bgizp0.jpg",
-                "https://res.cloudinary.com/drsgz7uiy/image/upload/v1644972540/wheatcute/t7x98fmtkrezoulhqlxl.jpg"]
+                "https://res.cloudinary.com/drsgz7uiy/image/upload/v1644972540/wheatcute/t7x98fmtkrezoulhqlxl.jpg",
+                "https://res.cloudinary.com/drsgz7uiy/image/upload/v1644972760/wheatcute/uhu27rdidwmfmwk2myjd.jpg",
+                "https://res.cloudinary.com/drsgz7uiy/image/upload/v1644972830/wheatcute/i8z48p8qydwvd3vp8rqk.jpg"]
       array.shuffle.pop(1).first
     end
   end
