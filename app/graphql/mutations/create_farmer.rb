@@ -28,8 +28,14 @@ module Mutations
     end
 
     def random_farm_image
-      array = ["https://res.cloudinary.com/drsgz7uiy/image/upload/v1644945446/wheatcute/gwnpiytpyzr71uxwv4wp.jpg"]
-
+      array = ["https://res.cloudinary.com/drsgz7uiy/image/upload/v1644969516/wheatcute/dpvzypesuyemtotjhjwg.jpg",
+                "https://res.cloudinary.com/drsgz7uiy/image/upload/v1644969554/wheatcute/thimagd7q6tyvgriyyhx.jpg",
+                "https://res.cloudinary.com/drsgz7uiy/image/upload/v1644969610/wheatcute/tmqxmfumi6eehn8rijod.jpg",
+                "https://res.cloudinary.com/drsgz7uiy/image/upload/v1644969643/wheatcute/l7h3nauk86arhiljxnvd.jpg",
+                "https://res.cloudinary.com/drsgz7uiy/image/upload/v1644969678/wheatcute/ebmp1asm70j7jmwlp5so.jpg",
+                "https://res.cloudinary.com/drsgz7uiy/image/upload/v1644969786/wheatcute/u4jlw3hndjprnd4yu1rk.jpg",
+                "https://res.cloudinary.com/drsgz7uiy/image/upload/v1644972475/wheatcute/xbihl2g2ycl0y9bgizp0.jpg",
+                "https://res.cloudinary.com/drsgz7uiy/image/upload/v1644972540/wheatcute/t7x98fmtkrezoulhqlxl.jpg"]
       array.shuffle.pop(1).first
     end
   end
