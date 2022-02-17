@@ -26,7 +26,7 @@
 - [Contributors](#contributors)
 
 ### <ins>Overview</ins>
-Wheat Cute is a Rails application that aims to connect grain producers with industrial grain consumers in the baking and brewing industry.
+WheatCute is a Rails application that aims to connect grain producers with industrial grain consumers in the baking and brewing industry.
 
 ### <ins>Project Management</ins>
 - [Ideation](https://miro.com/app/board/uXjVOQKpgUY=/?invite_link_id=173812514517)
