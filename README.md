@@ -40,8 +40,8 @@ This application uses a PostgresQL database to store Farm/Grain information.
 1. Fork and Clone the repo
 2. Install gem packages: `bundle install`
 3. Set-up Figaro: `bundle exec figaro install`
-3. Setup the database: `rails db:{drop,create,migrate,seed}`
-4. Run `bundle exec rspec` to test
+4. Setup the database: `rails db:{drop,create,migrate,seed}`
+5. Run `RAILS_ENV=test` then `bundle exec rspec` to test
 
 ### <ins>GraphQL</ins>
 All queries are made using a single GraphQL endpoint:
