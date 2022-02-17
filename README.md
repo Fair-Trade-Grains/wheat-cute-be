@@ -87,8 +87,6 @@ post to '/graphql'
 #### Development Principles
 ![OOP][OOP-img]
 ![TDD][TDD-img]
-![MVC][MVC-img]
-![REST][REST-img]
 
 ### <ins>Contributors</ins>
 ![LinkedIn][LinkedIn-img]
