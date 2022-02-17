@@ -4,9 +4,9 @@
   </a>
 </h1>
 <div align="center">
-  <a href="https://wheat-cute.herokuapp.com/"><strong>Wheat Cute App »</strong></a>
+  <a href="https://wheat-cute.herokuapp.com/"><strong>WheatCute App »</strong></a>
   <br />
-  <a href="https://github.com/Fair-Trade-Grains/frontend"><strong>Wheat Cute Front-End Repo »</strong></a>
+  <a href="https://github.com/Fair-Trade-Grains/frontend"><strong>WheatCute Front-End Repo »</strong></a>
   <br />
   <a href="https://github.com/Fair-Trade-Grains/wheat-cute-be/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
   ·
